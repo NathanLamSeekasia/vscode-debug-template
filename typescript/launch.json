@@ -1,0 +1,90 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "ts-node debug",
+      "cwd": "${workspaceRoot}",
+      // "protocol": "inspector",
+      "outputCapture": "std",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register",
+        "-r",
+        "tsconfig-paths/register"
+      ],
+      "args": [
+        "${file}"
+      ],
+      // "envFile": "${workspaceFolder}/.env", // use .env file
+      "env": {
+        // "NODE_TLS_REJECT_UNAUTHORIZED": "0", // enable this line if you want to ignore TLS error for testing
+        "TS_NODE_PROJECT": "tsconfig.json",
+        // copy your target Lambda env to here for debugging if any:
+        "ENVIRONMENT": "dev",
+        "SERVICE": "service-name",
+        "VERSION": "1",
+        "REGION": "ap-southeast-2",
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "ts-node debug koa",
+      "cwd": "${workspaceRoot}",
+      // "protocol": "inspector",
+      "outputCapture": "std",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register",
+        "-r",
+        "tsconfig-paths/register"
+      ],
+      "args": [
+        "src/listen.ts" // change this if your koa app entry point is different
+      ],
+      "env": {
+        "TS_NODE_PROJECT": "tsconfig.json",
+        // set the env if any:
+        "ENVIRONMENT": "local",
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "debug jest",
+      "cwd": "${workspaceRoot}",
+      // "protocol": "inspector",
+      "outputCapture": "std",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register",
+        "-r",
+        "tsconfig-paths/register",
+        "node_modules/.bin/jest",
+        "--runInBand"
+      ],
+      "args": [
+        "${file}"
+      ],
+      "env": {
+        "TS_NODE_PROJECT": "tsconfig.json",
+        // set the env if any:
+        "ENVIRONMENT": "test",
+      }
+    }
+  ]
+}
